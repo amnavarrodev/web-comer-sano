@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comer Sano | Productos del Agro en Santa Lucía</title>
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ========== VARIABLES Y CONFIGURACIÓN INICIAL ========== */
+        :root {
+            /* Modo Claro (default) - Paleta Agrícola */
+            --bg-primary: #FEFAE0;           /* Crema claro, como papel reciclado */
+            --bg-secondary: #F5F0E1;         /* Beige tierra suave */
+            --bg-card: #FFFFFF;              /* Blanco puro para tarjetas */
+            --text-primary: #3E2723;         /* Marrón oscuro, tierra */
+            --text-secondary: #5D4037;       /* Marrón medio */
+            --text-muted: #8D6E63;           /* Marrón claro */
+            --border-color: #D7CCC8;         /* Beige borde */
+            --shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
+            --shadow-hover: 0 8px 30px rgba(76, 175, 80, 0.2);
+            --accent: #4CAF50;               /* Verde hoja principal */
+            --accent-hover: #388E3C;         /* Verde hoja oscuro */
+            --accent-light: #E8F5E9;         /* Verde muy claro */
+            --secondary-accent: #8BC34A;     /* Verde lima, brotes */
+            --tertiary-accent: #FF8F00;      /* Naranja cosecha (CTA) */
+            --tertiary-hover: #F57C00;       /* Naranja oscuro */
+            --star-color: #FFC107;           /* Amarillo estrellas */
+            --modal-overlay: rgba(62, 39, 35, 0.6);
+            --hero-gradient: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 50%, #FFF8E1 100%);
+            --whatsapp-color: #25D366;       /* Verde WhatsApp oficial */
+        }
+
+        /* Modo Oscuro - Atardecer en el campo */
+        [data-theme="dark"] {
+            --bg-primary: #1B2A1A;           /* Verde bosque oscuro */
+            --bg-secondary: #243D23;         /* Verde oscuro */
+            --bg-card: #2D4A2C;              /* Verde medio oscuro */
+            --text-primary: #E8F5E9;         /* Verde muy claro */
+            --text-secondary: #C8E6C9;       /* Verde claro */
+            --text-muted: #A5D6A7;           /* Verde medio claro */
+            --border-color: #3E5C3D;         /* Verde borde */
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.6);
+            --accent: #66BB6A;               /* Verde hoja brillante */
+            --accent-hover: #81C784;         /* Verde más claro */
+            --accent-light: #1B3A1A;         /* Verde muy oscuro */
+            --secondary-accent: #9CCC65;     /* Verde lima */
+            --tertiary-accent: #FFA726;      /* Naranja cosecha oscuro */
+            --tertiary-hover: #FFB74D;       /* Naranja más claro */
+            --star-color: #FFD54F;           /* Amarillo oscuro */
+            --modal-overlay: rgba(0, 0, 0, 0.8);
+            --hero-gradient: linear-gradient(135deg, #1B2A1A 0%, #243D23 50%, #2D1F14 100%);
+        }
+
+        /* ========== RESET Y ESTILOS BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ========== TIPOGRAFÍA ========== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* ========== BOTONES ========== */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--tertiary-accent);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 143, 0, 0.3);
+            font-size: 1.1rem;
+            padding: 16px 32px;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--tertiary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 143, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ========== HEADER Y NAVEGACIÓN ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-primary);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+            border-bottom: 2px solid var(--accent-light);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--secondary-accent);
+        }
+
+        /* Menú desktop */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Botón modo oscuro */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            padding: 8px;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+            color: var(--tertiary-accent);
+            background-color: var(--accent-light);
+        }
+
+        /* Hamburguesa - oculta en desktop */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            padding: 120px 0 100px;
+            background: var(--hero-gradient);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero .highlight {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--accent-light);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .hero-feature i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* ========== PRODUCTOS ========== */
+        .productos {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary-accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .product-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .product-weight {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ========== TESTIMONIOS ========== */
+        .testimonios {
+            padding: 80px 0;
+            background-color: var(--bg-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-card);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '\201C';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent-light);
+            font-family: serif;
+            line-height: 1;
+            opacity: 0.5;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .stars {
+            color: var(--star-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--secondary-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* ========== FAQ ========== */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent);
+        }
+
+        .faq-question {
+            padding: 1.3rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .faq-question:hover {
+            background-color: var(--accent-light);
+        }
+
+        .faq-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            background-color: var(--accent);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* ========== PROVEEDORES ========== */
+        .proveedores {
+            padding: 80px 0;
+            background-color: var(--bg-primary);
+            text-align: center;
+        }
+
+        .proveedores-content {
+            background: linear-gradient(135deg, var(--accent-light), var(--bg-secondary));
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        /* ========== CONTACTO Y MAPA ========== */
+        .contacto {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent-light);
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
+
+        .contact-text strong {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-text a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 350px;
+            border: 3px solid var(--accent-light);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ========== WHATSAPP FLOTANTE ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-color);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background-color: var(--bg-primary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 2px solid var(--accent-light);
+            color: var(--text-secondary);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        
+        /* Tablet */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            /* Menú hamburguesa */
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-features {
+                font-size: 0.9rem;
+            }
+
+            /* Productos - 2 columnas en móvil */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+
+            .product-info {
+                padding: 1rem;
+            }
+
+            .product-info h3 {
+                font-size: 1rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+            }
+
+            /* Proveedores */
+            .proveedores-content {
+                padding: 2rem 1rem;
+            }
+
+            /* Modal */
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+
+            /* WhatsApp flotante más pequeño en móvil */
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER Y NAVEGACIÓN ========== -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#inicio" class="logo">
+                <i class="fas fa-seedling"></i>
+                Comer Sano
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <!-- Botón modo oscuro/claro -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo">
+                    <i class="fas fa-leaf"></i>
+                </button>
+                
+                <!-- Hamburguesa para móvil -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <span class="hero-badge">🌱 Productos frescos del campo a tu mesa</span>
+            <h1>Los mejores <span class="highlight">productos del agro</span> de Santa Lucía</h1>
+            <p>Granos, hortalizas y frutas frescas directamente de nuestros productores locales. Calidad y frescura garantizada cultivada con pasión y respeto por la tierra.</p>
+            
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Productos orgánicos</span>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Comercio justo</span>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Entrega local</span>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/59899123456?text=Hola%20Comer%20Sano,%20me%20interesan%20sus%20productos%20frescos" 
+               class="btn btn-primary" target="_blank">
+                <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== PRODUCTOS ========== -->
+    <section id="productos" class="productos">
+        <div class="container">
+            <h2>Nuestros Productos Frescos</h2>
+            <p class="section-subtitle">Seleccionados cuidadosamente de los mejores productores de la zona</p>
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <span class="product-badge">Orgánico</span>
+                    <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop" 
+                         alt="Tomates orgánicos" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <span class="product-category">Hortalizas</span>
+                        <h3>Tomates Orgánicos</h3>
+                        <p>Cultivados sin pesticidas, sabor auténtico del campo</p>
+                        <div class="product-footer">
+                            <span class="product-price">$120</span>
+                            <span class="product-weight">por kg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <span class="product-badge">Fresco</span>
+                    <img src="https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=400&h=300&fit=crop" 
+                         alt="Lechugas hidropónicas" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <span class="product-category">Hortalizas</span>
+                        <h3>Lechugas Hidropónicas</h3>
+                        <p>Cultivo controlado, máxima frescura y crocancia</p>
+                        <div class="product-footer">
+                            <span class="product-price">$85</span>
+                            <span class="product-weight">por unidad</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <span class="product-badge">Temporada</span>
+                    <img src="https://images.unsplash.com/photo-1447175008436-054170c2e979?w=400&h=300&fit=crop" 
+                         alt="Zanahorias frescas" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <span class="product-category">Hortalizas</span>
+                        <h3>Zanahorias Dulces</h3>
+                        <p>Crujientes y naturalmente dulces, recién cosechadas</p>
+                        <div class="product-footer">
+                            <span class="product-price">$90</span>
+                            <span class="product-weight">por kg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <span class="product-badge">Premium</span>
+                    <img src="https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=400&h=300&fit=crop" 
+                         alt="Manzanas rojas" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <span class="product-category">Frutas</span>
+                        <h3>Manzanas Rojas</h3>
+                        <p>De huerta local, dulzura y frescura inigualable</p>
+                        <div class="product-footer">
+                            <span class="product-price">$150</span>
+                            <span class="product-weight">por kg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="product-card">
+                    <span class="product-badge">Natural</span>
+                    <img src="https://images.unsplash.com/photo-1587496679742-bad502958fbf?w=400&h=300&fit=crop" 
+                         alt="Limones jugosos" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <span class="product-category">Frutas</span>
+                        <h3>Limones Jugosos</h3>
+                        <p>Perfectos para cada día, llenos de vitamina C</p>
+                        <div class="product-footer">
+                            <span class="product-price">$110</span>
+                            <span class="product-weight">por kg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="product-card">
+                    <span class="product-badge">Selecto</span>
+                    <img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e4?w=400&h=300&fit=crop" 
+                         alt="Granos variados" class="product-image" loading="lazy">
+                    <div class="product-info">
+                        <span class="product-category">Granos</span>
+                        <h3>Granos Variados</h3>
+                        <p>Lentejas, porotos y garbanzos de primera calidad</p>
+                        <div class="product-footer">
+                            <span class="product-price">$180</span>
+                            <span class="product-weight">por kg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIOS ========== -->
+    <section id="testimonios" class="testimonios">
+        <div class="container">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">La confianza de nuestra comunidad es nuestro mayor orgullo</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Excelente calidad en todos sus productos. Las verduras siempre llegan frescas y a buen precio. Se nota el amor por lo que hacen."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MG</div>
+                        <span>María García</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Pedí frutas para un evento y quedaron encantados. La atención es personalizada y muy profesional. ¡Totalmente recomendados!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">CR</div>
+                        <span>Carlos Rodríguez</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"Apoyo el comercio local y Comer Sano no defrauda. Los granos son de primera calidad y se nota la diferencia."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AL</div>
+                        <span>Ana López</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Respuestas a las dudas más comunes</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>🌿 ¿Los productos son realmente orgánicos?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Trabajamos con productores locales que utilizan prácticas sostenibles y respetuosas con el medio ambiente. Muchos de nuestros productos cuentan con certificación orgánica, otros son de cultivo tradicional de alta calidad sin uso excesivo de químicos.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>🚚 ¿Realizan envíos a domicilio?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, realizamos envíos a todo Santa Lucía y zonas aledañas como Canelones, Progreso y Juanicó. El costo del envío varía según la distancia. Contáctanos por WhatsApp para conocer las tarifas actualizadas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>📦 ¿Cuál es el pedido mínimo?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No tenemos pedido mínimo. Puedes comprar desde una sola unidad hasta grandes cantidades para eventos, restaurantes o comercios. Nos adaptamos a tus necesidades.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>🕒 ¿Qué días y horarios atienden?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Atendemos de lunes a sábado de 8:00 a 18:00 hs. Los pedidos realizados fuera de ese horario se procesan al siguiente día hábil. Los domingos solo atendemos consultas por WhatsApp.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>🏪 ¿Tienen local físico para visitar?</span>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, nos encontramos en el centro de Santa Lucía, en Av. Principal 1234. Puedes visitarnos para ver nuestros productos frescos o retirar tu pedido. También trabajamos con entregas programadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROVEEDORES ========== -->
+    <section class="proveedores">
+        <div class="container">
+            <div class="proveedores-content">
+                <h2>¿Eres Productor Local?</h2>
+                <p>Si tienes un emprendimiento agrícola y quieres trabajar con nosotros, ¡nos encantaría conocerte!</p>
+                <br>
+                <button class="btn btn-secondary" id="openModal">
+                    <i class="fas fa-handshake"></i> Quiero ser proveedor
+                </button>
+            </div>
+        </div>
+        
+        <!-- Modal Proveedores -->
+        <div class="modal" id="supplierModal">
+            <div class="modal-content">
+                <button class="modal-close" id="closeModal">&times;</button>
+                <h3>🌱 Postúlate como Proveedor</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Cuéntanos sobre tu emprendimiento agrícola</p>
+                <form id="supplierForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="empresa">Empresa o emprendimiento *</label>
+                        <input type="text" id="empresa" placeholder="Nombre de tu emprendimiento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono de contacto *</label>
+                        <input type="tel" id="telefono" placeholder="099 123 456" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Cuéntanos sobre tus productos</label>
+                        <textarea id="mensaje" placeholder="¿Qué productos cultivas? ¿Hace cuánto tiempo?..." rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; background-color: var(--accent);">
+                        <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACTO Y MAPA ========== -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>Contacto y Ubicación</h2>
+            <p class="section-subtitle">Estamos cerca tuyo, en el corazón de Santa Lucía</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Dirección</strong>
+                            Av. Principal 1234, Santa Lucía<br>Canelones, Uruguay
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Teléfono</strong>
+                            <a href="tel:+59899123456">+598 99 123 456</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            <a href="mailto:info@comersano.com.uy">info@comersano.com.uy</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Horarios</strong>
+                            Lunes a Sábado: 8:00 - 18:00 hs
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26231.31045643485!2d-56.3925!3d-34.455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1cbc5c5c5c5c5%3A0x5c5c5c5c5c5c5c5c!2sSanta%20Luc%C3%ADa%2C%20Canelones%2C%20Uruguay!5e0!3m2!1ses!2s!4v1697000000000!5m2!1ses!2s" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        title="Ubicación de Comer Sano">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Comer Sano • Productos frescos del agro • Santa Lucía, Canelones, Uruguay</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">🌱 Cultivando calidad, cosechando confianza</p>
+        </div>
+    </footer>
+
+    <!-- ========== WHATSAPP FLOTANTE ========== -->
+    <a href="https://wa.me/59899123456?text=Hola%20Comer%20Sano,%20quiero%20hacer%20un%20pedido%20de%20productos%20frescos" 
+       class="whatsapp-float" 
+       target="_blank" 
+       aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ========== MODO OSCURO/CLARO ==========
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Función para establecer el tema
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Cambiar icono según el tema
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-leaf');
+                themeIcon.classList.add('fa-moon');
+                themeToggle.setAttribute('aria-label', 'Cambiar a modo claro');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-leaf');
+                themeToggle.setAttribute('aria-label', 'Cambiar a modo oscuro');
+            }
+        }
+        
+        // Verificar preferencia guardada
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+        
+        // Toggle al hacer click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+
+        // ========== MENÚ HAMBURGUESA ==========
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer click en un enlace
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // ========== ACORDEÓN FAQ ==========
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                
+                // Cerrar otros items abiertos
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem && item.classList.contains('active')) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Toggle del item actual
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // ========== MODAL PROVEEDORES ==========
+        const modal = document.getElementById('supplierModal');
+        const openModal = document.getElementById('openModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        function openModalFunction() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModalFunction() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        openModal.addEventListener('click', openModalFunction);
+        closeModal.addEventListener('click', closeModalFunction);
+        
+        // Cerrar modal al hacer click fuera
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModalFunction();
+            }
+        });
+        
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModalFunction();
+            }
+        });
+
+        // ========== FORMULARIO PROVEEDORES ==========
+        document.getElementById('supplierForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            
+            // Simulación de envío
+            alert(`¡Gracias ${nombre}! Hemos recibido tu solicitud. Nos pondremos en contacto contigo en las próximas 48 horas.`);
+            
+            // Cerrar modal y limpiar formulario
+            closeModalFunction();
+            this.reset();
+        });
+
+        // ========== SMOOTH SCROLL PARA LINKS INTERNOS ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 70;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ========== ANIMACIÓN AL HACER SCROLL ==========
+        // Intersection Observer para animar elementos al entrar en viewport
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar productos y testimonios para animación suave
+        document.querySelectorAll('.product-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
