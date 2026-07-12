@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Comer Sano • Productos del agro en Santa Lucía</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET Y VARIABLES GLOBALES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* 🌱 Paleta agrícola profesional */
+      --color-primary: #4A7C3F;      /* Verde hoja (botones, acentos) */
+      --color-primary-hover: #3A6330;
+      --color-secondary: #D4A843;    /* Dorado trigo (detalles, estrellas) */
+      --color-accent: #F5E6D3;       /* Beige crema (fondos suaves) */
+      --color-bg: #FEFDFB;           /* Blanco roto cálido */
+      --color-surface: #F0EDE5;      /* Gris tierra claro */
+      --color-text: #2F2E2A;         /* Marrón oscuro */
+      --color-text-soft: #5C5548;    /* Marrón medio */
+      --color-border: #D9D0C1;       /* Beige oscuro */
+      --color-card: #FFFFFF;
+      --color-shadow: rgba(0, 0, 0, 0.06);
+      --color-faq-bg: #F8F5EF;
+      --transition-speed: 0.3s;
+    }
+
+    body.dark-mode {
+      --color-primary: #6B9E5A;      /* Verde más claro en oscuro */
+      --color-primary-hover: #5A8A4A;
+      --color-secondary: #E0B94D;
+      --color-accent: #3A3A2E;
+      --color-bg: #1E1E1A;
+      --color-surface: #2B2B24;
+      --color-text: #EBE7DD;
+      --color-text-soft: #C4BDAE;
+      --color-border: #4A463A;
+      --color-card: #2A2A22;
+      --color-shadow: rgba(0,0,0,0.3);
+      --color-faq-bg: #33302A;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== TIPOGRAFÍA Y BOTONES ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 10px rgba(74, 124, 63, 0.25);
+    }
+    .btn:hover {
+      background-color: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(74, 124, 63, 0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--color-bg);
+      box-shadow: 0 2px 12px var(--color-shadow);
+      border-bottom: 2px solid var(--color-border);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo i {
+      color: var(--color-secondary);
+      font-size: 2rem;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-menu a {
+      font-weight: 500;
+      color: var(--color-text);
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-primary);
+      transition: width 0.3s;
+    }
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-secondary);
+      padding: 0.4rem;
+      transition: transform 0.3s;
+    }
+    .theme-toggle:hover {
+      transform: rotate(25deg);
+    }
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--color-accent) 0%, #E7F3E3 100%);
+      padding: 5rem 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid var(--color-secondary);
+    }
+    body.dark-mode .hero {
+      background: linear-gradient(135deg, #2F382A 0%, #1E281A 100%);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+      color: var(--color-text-soft);
+    }
+
+    /* ===== SECCIONES ===== */
+    section {
+      padding: 4.5rem 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2.8rem;
+      color: var(--color-primary);
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--color-secondary);
+      margin: 0.8rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* ===== PRODUCTOS ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+    }
+    .product-card {
+      background: var(--color-card);
+      border-radius: 24px;
+      padding: 1.4rem;
+      box-shadow: 0 12px 24px var(--color-shadow);
+      border: 1px solid var(--color-border);
+      transition: transform 0.25s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+    }
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: var(--color-accent);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .product-card h3 {
+      font-size: 1.3rem;
+      color: var(--color-primary);
+    }
+    .product-desc {
+      color: var(--color-text-soft);
+      margin: 0.4rem 0 0.8rem;
+      font-size: 0.95rem;
+    }
+    .product-price {
+      font-weight: 700;
+      color: var(--color-secondary);
+      font-size: 1.3rem;
+      margin-top: auto;
+    }
+
+    /* ===== TESTIMONIOS ===== */
+    .testimonials-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+    }
+    .testimonial-card {
+      background: var(--color-card);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 10px 20px var(--color-shadow);
+      flex: 1 1 280px;
+      max-width: 340px;
+      border-left: 6px solid var(--color-secondary);
+    }
+    .stars {
+      color: var(--color-secondary);
+      margin-bottom: 0.8rem;
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.2rem;
+      color: var(--color-text-soft);
+    }
+    .client-name {
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    /* ===== FAQ ===== */
+    .faq-item {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      background: var(--color-faq-bg);
+    }
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 1.2rem 1.8rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      background: var(--color-card);
+      padding: 0 1.8rem;
+      color: var(--color-text-soft);
+    }
+    .faq-answer p {
+      padding: 0.8rem 0 1.4rem;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--color-card);
+      padding: 2.2rem;
+      border-radius: 28px;
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+      border: 2px solid var(--color-secondary);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1.3rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--color-text-soft);
+    }
+    .modal input, .modal textarea {
+      width: 100%;
+      padding: 0.9rem;
+      margin: 0.6rem 0 1.2rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    /* ===== CONTACTO ===== */
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      background: var(--color-accent);
+      border-radius: 24px;
+      padding: 2.2rem;
+      margin-top: 1.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+    }
+    .contact-item i {
+      color: var(--color-primary);
+    }
+
+    /* ===== WHATSAPP FLOTANTE ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #25D366;
+      color: white;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+      z-index: 150;
+      transition: transform 0.3s;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.12);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--color-card);
+        padding: 1.8rem;
+        box-shadow: 0 12px 20px var(--color-shadow);
+        border-top: 2px solid var(--color-border);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+      .menu-icon {
+        display: block;
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+    @media (min-width: 769px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 992px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <i class="fas fa-seedling"></i> Comer Sano
+      </div>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div style="display: flex; align-items: center;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro">
+          <i class="fas fa-moon"></i>
+        </button>
+        <span class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="container">
+        <h1>Los mejores granos, hortalizas y frutas de Santa Lucía</h1>
+        <p>Directo del productor a tu mesa. Calidad, frescura y sabor que se notan. Apoyamos el agro local.</p>
+        <a href="https://wa.me/59899123456?text=Hola%20Comer%20Sano%2C%20quiero%20más%20información" target="_blank" class="btn">
+          <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section id="productos" class="container">
+      <h2 class="section-title">Nuestros Productos</h2>
+      <div class="products-grid" id="productsContainer"></div>
+    </section>
+
+    <section id="testimonios" style="background: var(--color-surface);">
+      <div class="container">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <div class="testimonials-grid" id="testimonialsContainer"></div>
+      </div>
+    </section>
+
+    <section id="faq" class="container">
+      <h2 class="section-title">Preguntas Frecuentes</h2>
+      <div id="faqContainer"></div>
+    </section>
+
+    <section style="text-align: center; padding: 3rem 0;">
+      <button class="btn btn-outline" id="openSupplierModal">
+        <i class="fas fa-tractor"></i> ¿Quieres ser proveedor?
+      </button>
+    </section>
+
+    <div class="modal" id="supplierModal">
+      <div class="modal-content">
+        <span class="modal-close" id="closeModal">&times;</span>
+        <h3 style="margin-bottom:1.4rem; color: var(--color-primary);">Formulario para proveedores</h3>
+        <form id="supplierForm">
+          <input type="text" placeholder="Nombre completo" required>
+          <input type="text" placeholder="Empresa" required>
+          <input type="tel" placeholder="Teléfono" required>
+          <textarea rows="3" placeholder="Mensaje (productos que ofreces)"></textarea>
+          <button type="submit" class="btn" style="width:100%">Enviar propuesta</button>
+        </form>
+      </div>
+    </div>
+
+    <section id="contacto" class="container">
+      <h2 class="section-title">Encuéntranos</h2>
+      <div class="contact-info">
+        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Calle Principal 1234, Santa Lucía, Canelones</div>
+        <div class="contact-item"><i class="fas fa-phone-alt"></i> 598 99 123 456</div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> info@comersano.uy</div>
+        <div class="contact-item"><i class="fab fa-instagram"></i> @comersanouy</div>
+      </div>
+      <div style="margin-top: 2rem; text-align: center;">
+        <a href="https://maps.google.com/?q=Santa+Lucía+Canelones+Uruguay" target="_blank" class="btn">
+          <i class="fas fa-map-pin"></i> Ver en Google Maps
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <a href="https://wa.me/59899123456?text=Hola%20Comer%20Sano" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    (function() {
+      const products = [
+        { name: "Zanahoria fresca", desc: "Cosecha local, ideal para jugos.", price: "$45/kg", icon: "🥕" },
+        { name: "Tomate perita", desc: "Madurado en planta, sabor intenso.", price: "$80/kg", icon: "🍅" },
+        { name: "Lechuga criolla", desc: "Hidropónica, fresca y crocante.", price: "$35/unidad", icon: "🥬" },
+        { name: "Naranja Valencia", desc: "Dulce, para jugo o postre.", price: "$55/kg", icon: "🍊" },
+        { name: "Huevos de campo", desc: "Gallinas libres, 12 unidades.", price: "$150/docena", icon: "🥚" },
+        { name: "Miel artesanal", desc: "Pura miel de monte nativo.", price: "$200/frasco", icon: "🍯" }
+      ];
+
+      const testimonials = [
+        { stars: 5, text: "Las frutas siempre llegan fresquísimas. ¡Recomendado!", client: "María G." },
+        { stars: 5, text: "Excelente atención y productos de primera calidad.", client: "Juan P." },
+        { stars: 4, text: "Me encanta apoyar a productores locales. Muy buena experiencia.", client: "Lucía R." }
+      ];
+
+      const faqs = [
+        { q: "¿Hacen envíos a domicilio?", a: "Sí, realizamos envíos dentro de Santa Lucía y zonas cercanas. Consulta por costo según distancia." },
+        { q: "¿Los productos son orgánicos?", a: "Trabajamos con productores que priorizan prácticas sustentables, aunque no todos cuentan con certificación orgánica." },
+        { q: "¿Puedo comprar por mayor?", a: "Claro, ofrecemos descuentos para pedidos mayoristas. Contáctanos por WhatsApp." },
+        { q: "¿Qué formas de pago aceptan?", a: "Efectivo, transferencia bancaria y Mercado Pago." },
+        { q: "¿Dónde están ubicados?", a: "Nuestro local está en Santa Lucía, Canelones. También puedes retirar en persona." }
+      ];
+
+      document.getElementById('productsContainer').innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="product-img">${p.icon}</div>
+          <h3>${p.name}</h3>
+          <p class="product-desc">${p.desc}</p>
+          <span class="product-price">${p.price}</span>
+        </div>`).join('');
+
+      document.getElementById('testimonialsContainer').innerHTML = testimonials.map(t => `
+        <div class="testimonial-card">
+          <div class="stars">${Array(t.stars).fill('<i class="fas fa-star"></i>').join('')}</div>
+          <p class="testimonial-text">“${t.text}”</p>
+          <span class="client-name">- ${t.client}</span>
+        </div>`).join('');
+
+      document.getElementById('faqContainer').innerHTML = faqs.map((item, i) => `
+        <div class="faq-item">
+          <button class="faq-question" data-index="${i}">${item.q} <i class="fas fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>${item.a}</p></div>
+        </div>`).join('');
+
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const item = this.parentElement;
+          document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+          if (!item.classList.contains('active')) item.classList.add('active');
+        });
+      });
+
+      const menuIcon = document.getElementById('menuIcon');
+      const navMenu = document.getElementById('navMenu');
+      menuIcon.addEventListener('click', () => navMenu.classList.toggle('active'));
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) navMenu.classList.remove('active');
+        });
+      });
+
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const icon = themeToggle.querySelector('i');
+      function setTheme(isDark) {
+        body.classList.toggle('dark-mode', isDark);
+        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        localStorage.setItem('comersano-theme-v2', isDark ? 'dark' : 'light');
+      }
+      setTheme(localStorage.getItem('comersano-theme-v2') === 'dark');
+      themeToggle.addEventListener('click', () => setTheme(!body.classList.contains('dark-mode')));
+
+      const modal = document.getElementById('supplierModal');
+      document.getElementById('openSupplierModal').addEventListener('click', () => modal.classList.add('active'));
+      document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('active'));
+      window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+      document.getElementById('supplierForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
+        modal.classList.remove('active');
+        e.target.reset();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) navMenu.classList.remove('active');
+      });
+    })();
+  </script>
+</body>
+</html>
